@@ -9,7 +9,8 @@ That is why `ModelUtils.jl` exports `init_kaiming_normal`(@ref) and `init_kaimin
 Let's see how we can reinitialize a small CNN with Kaiming initialization instead of Glorot.
 
 ```@example
-cnn = Chain(Conv((3, 3), 3 => 16, relu), Conv((3, 3, 16 => 16)))
+using Flux, ModelUtils # hide
+cnn = Chain(Conv((3, 3), 3 => 16, relu), Conv((3, 3), 16 => 16))
 inits = [Initialization(Conv, :weight, init_kaiming_normal)]
 initmodel!(cnn, inits)
 ```

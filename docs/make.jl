@@ -7,3 +7,7 @@ makedocs(
     format=Documenter.HTML(),
     modules=[ModelUtils]
 )
+
+deploydocs(
+    repo="github.com/lorenzoh/ModelUtils.jl.git"
+)
