@@ -1,7 +1,7 @@
 using Flux
 
 const FluxLayer = Union{
-    Chain, Dense, Maxout, typeof(RNN), typeof(LSTM), typeof(GRU), Conv, CrossCor, ConvTranspose, MaxPool, MeanPool,
+    Chain, Dense, Maxout, typeof(RNN), typeof(LSTM), typeof(GRU), Conv, Flux.CrossCor, ConvTranspose, MaxPool, MeanPool,
     DepthwiseConv, Dropout, AlphaDropout, LayerNorm, BatchNorm, InstanceNorm, GroupNorm,
     SkipConnection, Hook
 }

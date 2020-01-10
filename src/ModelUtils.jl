@@ -4,6 +4,9 @@ Flux.jl models.
 """
 module ModelUtils
 
+using Flux
+using AbstractTrees
+
 include("./model.jl")
 include("./utils.jl")
 include("./map.jl")

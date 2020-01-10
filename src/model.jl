@@ -122,3 +122,4 @@ function Base.show(io::IO, li::Model{T}) where T
 end
 
 printmodel(model::Model) = print_tree(model)
+printmodel(model) = print_tree(Model(model))
