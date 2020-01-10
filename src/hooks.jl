@@ -1,5 +1,5 @@
 using Flux
-using Flux: trainable
+import Flux: trainable
 using Zygote: hook
 using Statistics: mean, std
 
@@ -26,7 +26,7 @@ const_(_, x) = x
 
 
 (hook::Hook)(x) = hook.forward(hook.state, Zygote.hook(x̄ -> hook.backward(hook.state, x̄), hook.layer(x)))
-Flux.trainable(hook::Hook) = (hook.layer,)
+trainable(hook::Hook) = (hook.layer,)
 
 function addhook(model; forward = const_, backward = const_, filter_fn = _ -> true)
     applyhook_(layer) = filter_fn(layer) ? Hook(layer, forward = forward, backward = backward) : layer

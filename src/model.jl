@@ -1,5 +1,5 @@
 using Flux
-using Flux: trainable
+import Flux: trainable
 
 using AbstractTrees
 using AbstractTrees: children
@@ -25,7 +25,7 @@ end
 Model(layer::T, args...) where T = Model{T}(layer, args...)
 
 (model::Model)(x) = model.layer(x)
-Flux.trainable(model::Model) = (model.layer,)
+trainable(model::Model) = (model.layer,)
 
 
 totuple(t::Tuple) = t
