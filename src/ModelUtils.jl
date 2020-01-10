@@ -5,7 +5,6 @@ Flux.jl models.
 module ModelUtils
 
 include("./model.jl")
-include("./visualization.jl")
 include("./utils.jl")
 include("./map.jl")
 include("./hooks.jl")
