@@ -1,12 +1,6 @@
 # Reference
 
-Documentation for `ModelUtils.jl`s public interface
-
-## Contents
-
-```@contents
-Pages = ["public.md"]
-```
+Reference for `ModelUtils.jl`
 
 ## Index
 
@@ -20,8 +14,15 @@ Pages = ["public.md"]
 IterLayers
 IterModels
 Model
+Hook
+addhook
 mapmodel
-attrtype
 paramsdict
 gradientsdict
+printmodel
+Initialization
+init_kaiming_normal
+init_kaiming_uniform
+init!
+initmodel!
 ```

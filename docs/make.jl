@@ -1,6 +1,6 @@
 using Documenter
 using ModelUtils
-
+using Flux
 
 makedocs(
     sitename="ModelUtils.jl documentation",

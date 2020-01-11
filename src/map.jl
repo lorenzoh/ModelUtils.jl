@@ -3,17 +3,17 @@
 
 Applies `f` to every layer, resulting in a new model.
 
-    !!!warning
+!!! warning
 
-The model layer structs are copied in the process, but the
-fields are not, hence the resulting model will have the
-same parameters!
+    The model layer structs are copied in the process, but the
+    fields are not, hence the resulting model will have the
+    same parameters!
 
-    !!!warning
+!!! warning
 
-The copying is done by first recursively applying `mapmodel` to
-all children fields and then attempting to create a new object
-of type `M` with the default outer constructor `M(fields...)`.
+    The copying is done by first recursively applying `mapmodel` to
+    all children fields and then attempting to create a new object
+    of type `M` with the default outer constructor `M(fields...)`.
 
 If your custom type does not have a constructor of that form,
 like e.g. `Flux.Chain`, you will have to extend this function

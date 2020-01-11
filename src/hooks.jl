@@ -11,7 +11,7 @@ Wraps a Flux layer, and holds a Dict with state (`state`)
 After the forward pass of the wrapped layer calls `forward(state, layeroutput)`
 After the gradient calculation of the wrapped layer calls `backward(state, layergradient)`
 
-For adding hooks to Flux models, see [`addhook`](@ref)
+For adding hooks to existing models, see [`addhook`](@ref)
 """
 struct Hook
     layer
@@ -28,9 +28,18 @@ const_(_, x) = x
 (hook::Hook)(x) = hook.forward(hook.state, Zygote.hook(x̄ -> hook.backward(hook.state, x̄), hook.layer(x)))
 trainable(hook::Hook) = (hook.layer,)
 
+"""
+    addhook(model; [forward, backward, filter_fn])
+
+Add a [`Hook`](@ref) with callbacks `forward` and `backward` to all layers
+of `model` where `filter_fn(layer) == true`.
+
+See [`Hook`](@ref)
+"""
 function addhook(model; forward = const_, backward = const_, filter_fn = _ -> true)
-    applyhook_(layer) = filter_fn(layer) ? Hook(layer, forward = forward, backward = backward) : layer
-    mapmodel(applyhook_, model)
+    mapmodel(model) do layer
+        filter_fn(layer) ? Hook(layer, forward = forward, backward = backward) : layer
+    end
 end
 
 function removehooks(model)

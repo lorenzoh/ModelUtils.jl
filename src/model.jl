@@ -19,7 +19,6 @@ struct Model{T}
     paramattrs::AbstractVector{Symbol}
     settingattrs::AbstractVector{Symbol}
     childrenattrs::AbstractVector{Symbol}
-    stateattrs::AbstractVector{Symbol}
 end
 
 Model(layer::T, args...) where T = Model{T}(layer, args...)
@@ -38,7 +37,6 @@ function Model(layer::T) where T
         ParamAttr => [],
         SettingAttr => [],
         ChildAttr => [],
-        StateAttr => [],
     )
     for name in fieldnames(T)
         value = getfield(layer, name)
@@ -59,7 +57,6 @@ function Model(layer::T) where T
         fields[ParamAttr],
         fields[SettingAttr],
         fields[ChildAttr],
-        fields[StateAttr],
     )
 end
 
@@ -121,5 +118,10 @@ function Base.show(io::IO, li::Model{T}) where T
     print(io, s)
 end
 
+"""
+    printmodel(model)
+
+Print `model` as a tree
+"""
 printmodel(model::Model) = print_tree(model)
 printmodel(model) = print_tree(Model(model))

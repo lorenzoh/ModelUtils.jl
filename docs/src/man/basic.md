@@ -10,15 +10,16 @@ The most important type ModelUtils.jl defines is [`Model`](@ref).
 It is a tree structure that wraps any Flux or custom layer,
 recursively wrapping all children layers too.
 
-Let's start with a simple example model:
+To see what that is useful for, let's look at a simple Flux model:
 
-```julia
+```@example 1
 using Flux: BatchNorm, Conv, Chain
 
 chain = Chain(Conv((3, 3), 3 => 16), BatchNorm(16))
+nothing # hide
 ```
 
-This pure-Flux model has an implicit tree structure, namely:
+This model has an implicit tree structure, namely:
 
 - Chain
     - Conv
@@ -28,23 +29,35 @@ Deep learning models often get very large and have multiple levels of hierarchy 
 
 We can do this with the [`Model`](@ref) constructor:
 
-```julia
+```@example 1
 using ModelUtils: Model, printmodel
 
 model = Model(chain)
 ```
 
-This enables a lot of functionality, for example `printmodel(model)` outputs:
+Note that [`Model`](@ref) can be called like any layer, and simply passes the input to the wrapped layer:
 
+```@example 1
+x = randn(8, 8, 3, 1)
+@assert chain(x) ≈ model(x) 
 ```
-Chain, 2 direct children
-├─ Conv, params (:weight, :bias), settings (:σ, :stride, :pad, :dilation)
-└─ BatchNorm, params (:β, :γ), settings (:λ, :ϵ, :momentum)
+
+Now we can show the model's tree structure with [`printmodel`](@ref):
+
+```@example 1
+printmodel(model)
 ```
 
 You can see that the tree structure is indicated and that we get some additional information about each wrapped layer's fields.
 
-If you want to customize this behavior, see [Custom models](@ref).
+!!! note
+
+    Many functions in `ModelUtils.jl` will work with unwrapped Flux models, but will wrap and unwrap the model in the function call. Since constructing the tree takes some time and memory, it is more performant to keep your model wrapped in a [`Model`](@ref).
+
+!!! note
+
+    `ModelTools.jl` will try to automatically detect which fields are trainable parameters, settings, or children layers.
+    This should work for most custom layers, too, but if the result is not what you expect you can customize the behavior, see [Custom models](@ref).
 
 ## Iteration
 
