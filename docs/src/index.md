@@ -2,7 +2,13 @@
 ```@meta
 CurrentModule = ModelUtils
 ```
-ModelUtils.jl provides functionality for analyzing and manipulating Flux.jl models.
+ModelUtils.jl provides utilities for working with Flux.jl models.
+
+## Features
+
+- initialization
+- hooks
+- iteration 
 
 The most important type it defines is [`Model`](@ref Model), a tree data
 structure that wraps your Flux model and is itself a Flux layer.

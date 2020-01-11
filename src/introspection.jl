@@ -6,7 +6,9 @@ using Zygote: Grads
 """
     paramsdict(model::Model) -> Dict{Symbol, Array}
 
-Return a Dict with mapping parameter name => parameter value
+Return a Dict with mapping parameter name => parameter value.
+
+Useful for inspecting the distribution of parameters.
 """
 function paramsdict(model::Model; filterfn = _ -> true)
     ps = Dict()
@@ -29,6 +31,8 @@ end
     gradientsdict(model::Model, gs::Grads) -> Dict{Symbol, Array}
 
 Return a Dict with mapping parameter name => gradient value
+
+Useful for inspecting the distribution of gradients.
 """
 function gradientsdict(model::Model, gs::Grads; filterfn = _ -> true)
     return Dict(
@@ -36,8 +40,6 @@ function gradientsdict(model::Model, gs::Grads; filterfn = _ -> true)
         for (name, ps_) in paramsdict(model, filterfn = filterfn)
     )
 end
-
-
 
 
 """
