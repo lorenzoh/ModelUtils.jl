@@ -12,10 +12,13 @@ const FluxLayer = Union{
 Enum for layer field types.
 
 - `ParamAttr`
+
     Field with trainable parameters, e.g. `Dense.W`
 - `ChildAttr`
+
     Field that contains children layers, e.g. `Chain.layers`
 - `SettingAttr`
+
     Fields with hyperparameters that define the layer structure, e.g. `Conv.pad`
 """
 @enum AttrType begin
