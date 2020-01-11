@@ -69,6 +69,16 @@ end
 Applies `inits` to `model`.
 
 See [`Initialization`](@ref).
+
+## Example
+
+```julia
+model = Chain(Dense(10, 10), Dense(10, 10))
+initmodel!(model, [
+    Initialization(Dense, :W, init_kaiming_normal),
+    Initialization(Dense, :bias, init_zeros)
+])
+```
 """
 function initmodel!(model, inits::AbstractVector{Initialization})
     for layer in IterLayers(model)

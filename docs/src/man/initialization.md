@@ -47,3 +47,4 @@ If you want more control over which layers are initialized how, use [`IterLayers
 
 - [`init_kaiming_normal`](@ref)
 - [`init_kaiming_uniform`](@ref)
+- [`init_zeros`](@ref)

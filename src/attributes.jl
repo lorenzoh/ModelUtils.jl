@@ -3,7 +3,7 @@ using Flux
 const FluxLayer = Union{
     Chain, Dense, Maxout, typeof(RNN), typeof(LSTM), typeof(GRU), Conv, ConvTranspose, MaxPool, MeanPool,
     DepthwiseConv, Dropout, AlphaDropout, LayerNorm, BatchNorm, InstanceNorm, GroupNorm,
-    SkipConnection, Hook
+    Hook
 }
 
 """
