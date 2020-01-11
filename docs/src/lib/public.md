@@ -23,6 +23,7 @@ printmodel
 Initialization
 init_kaiming_normal
 init_kaiming_uniform
+init_zeros
 init!
 initmodel!
 ```
