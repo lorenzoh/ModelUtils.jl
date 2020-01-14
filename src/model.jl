@@ -39,9 +39,9 @@ function Model(layer::T) where T
         ChildAttr => [],
     )
     for name in fieldnames(T)
-        value = getfield(layer, name)
-        ft = attrtype(layer, Val(name), value)
-        push!(fields[ft], name)
+        # dispatch on only layer type and field name
+        at = attrtype(layer, Val(name))
+        push!(fields[at], name)
     end
 
     chs = Model[]

@@ -4,12 +4,12 @@ using Zygote: hook
 using Statistics: mean, std
 
 """
-`Hook`
+    Hook(layer, [forward, backward, state = Dict()])
 
-Wraps a Flux layer, and holds a Dict with state (`state`)
+Wraps a Flux layer, and holds a Dict with state (`Hook.state`)
 
-After the forward pass of the wrapped layer calls `forward(state, layeroutput)`
-After the gradient calculation of the wrapped layer calls `backward(state, layergradient)`
+After the forward pass of the wrapped layer calls `Hook.forward(state, layeroutput)`
+After the gradient calculation of the wrapped layer calls `Hook.backward(state, layergradient)`
 
 For adding hooks to existing models, see [`addhook`](@ref)
 """

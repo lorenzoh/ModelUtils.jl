@@ -27,7 +27,7 @@ function mapmodel(f, model::M, constructor = M) where M
     fields = []
     for (name, T) in zip(fieldnames(M), fieldtypes(M))
         value::T = getfield(model, name)
-        if attrtype(model, Val(name), value) == ModelUtils.ChildAttr
+        if attrtype(model, Val(name)) == ModelUtils.ChildAttr
             push!(fields, mapmodel(f, value))
         else
             push!(fields, value)

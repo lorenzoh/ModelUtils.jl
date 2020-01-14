@@ -43,18 +43,18 @@ Now we want `MyChain.layers` to be a `ChildAttr` but we can check that it is not
 
 ```@example customchain
 mychain = MyChain(Dense(10, 10), Dense(10, 10), softmax)
-ModelUtils.attrtype(mychain, Val(:layers), mychain.layers)
+ModelUtils.attrtype(mychain, Val(:layers))
 ```
 
 So we can define a custom `attrtype` method:
 
 ```@example customchain
 import ModelUtils: attrtype
-ModelUtils.attrtype(::MyChain, ::Val{:layers}, ::Any) = ModelUtils.ChildAttr
+ModelUtils.attrtype(::MyChain, ::Val{:layers}) = ModelUtils.ChildAttr
 ``` 
 
 And now we get the result we wanted:
 
 ```@example customchain
-ModelUtils.attrtype(mychain, Val(:layers), mychain.layers)
+ModelUtils.attrtype(mychain, Val(:layers))
 ```

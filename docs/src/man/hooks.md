@@ -18,3 +18,11 @@ hmodel = addhook(
 printmodel(hmodel)
 ```
 
+You can also explicitly wrap a layer in a `Hook`:
+
+```@example hooks
+layer = Dense(10, 10)
+hook = Hook(layer, forward = (state, activation) -> println("Hi!"))
+
+hook(randn(10))
+```
