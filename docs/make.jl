@@ -1,13 +1,21 @@
-using Documenter
 using ModelUtils
-using Flux
+using Documenter
 
-makedocs(
-    sitename="ModelUtils.jl documentation",
-    format=Documenter.HTML(),
-    modules=[ModelUtils]
+makedocs(;
+    modules=[ModelUtils],
+    authors="lorenzoh <lorenz.ohly@gmail.com>",
+    repo="https://github.com/lorenzoh/ModelUtils.jl/blob/{commit}{path}#L{line}",
+    sitename="ModelUtils.jl",
+    format=Documenter.HTML(;
+        prettyurls=get(ENV, "CI", "false") == "true",
+        canonical="https://lorenzoh.github.io/ModelUtils.jl",
+        assets=String[],
+    ),
+    pages=[
+        "Home" => "index.md",
+    ],
 )
 
-deploydocs(
-    repo="github.com/lorenzoh/ModelUtils.jl.git"
+deploydocs(;
+    repo="github.com/lorenzoh/ModelUtils.jl",
 )
