@@ -14,7 +14,7 @@ include("./hooks.jl")
 include("./introspection.jl")
 include("./attributes.jl")
 include("./initialization.jl")
-include("./plot.jl")
+#include("./plot.jl")
 
 export Model,
     Hook,
@@ -37,7 +37,6 @@ export Model,
     init_zeros,
     mapmodel,
     paramsdict,
-    plotlayers,
     printmodel,
     removehooks
 end # module
